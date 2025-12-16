@@ -21,35 +21,28 @@ def generate_rego_content(package, rules):
         'default allow := {"allowed": true, "violations": []}',
     ]
     
-    # ----------------------------------------------------
-    # 1. Rule Definitions and Violation Aggregation
-    #    This loop handles BOTH single and multiple rules safely.
-    # ----------------------------------------------------
+
     for i, rule in enumerate(rules, 1):
         r_type = rule.get('type')
         attr = rule.get('check_attribute')
         
         lines.append(f"\n# Rule {i}: {rule.get('description', 'Auto-generated')}")
         
-        # Define the violation aggregation for this specific rule
+    
         lines.append("violations contains msg if {")
         lines.append(f"    _check_rule_{i}")
         lines.append(f'    msg := "{rule.get("error_msg", "Policy Violation")}"')
         lines.append("}")
 
-        # Define the rule logic itself
+
         lines.append(f"_check_rule_{i} if {{")
         
-        # Add Optional Condition
         if rule.get('condition'):
             lines.append(f"    {rule['condition']}")
-        
-        # Add Type-Specific Logic
         if r_type == 'block_list':
             vals = json.dumps(rule.get('blocked_values', []))
             lines.append(f"    {attr} == {vals}[_]")
         elif r_type == 'group_block_list':
-            # Checks if any item in the input list exists in the blocked list
             vals = json.dumps(rule.get('blocked_values', []))
             lines.append(f"    {attr}[_] == {vals}[_]")
         elif r_type == 'deny_match':
@@ -58,9 +51,7 @@ def generate_rego_content(package, rules):
             
         lines.append("}") # Close _check_rule_i
     
-    # ----------------------------------------------------
-    # 2. Final Decision Override
-    # ----------------------------------------------------
+
     lines.append("\n# Final decision: Deny if violation set is not empty.")
     lines.append('allow := {"allowed": false, "violations": violations} if count(violations) > 0')
     

@@ -1,11 +1,7 @@
----
-
-## 2. `TOOLKIT_USAGE.md` (Detailed Workflow Guide)
-
 ```markdown
 # 🛠️ Toolkit Usage Guide
 
-This document details the full developer workflow for the `my_namespace.opa_governance` collection, covering rule definition, testing, and final configuration within the Ansible Automation Platform (AAP).
+This document details the full developer workflow for the `optm.policy_configuration` collection, covering rule definition, testing, and final configuration within the Ansible Automation Platform (AAP).
 
 ## 1. Rule Definition: The Governance YAML
 

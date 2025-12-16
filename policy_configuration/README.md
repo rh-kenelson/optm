@@ -1,4 +1,4 @@
-# 🛡️ my_namespace.opa_governance
+# 🛡️ optm.policy_configuration
 
 **Ansible Policy-as-Code (PaC) Toolkit for Open Policy Agent (OPA) and Ansible Automation Platform (AAP)**
 
@@ -25,4 +25,4 @@ This collection provides a comprehensive framework for defining, testing, and de
 Install the collection from Ansible Galaxy using the standard command:
 
 ```bash
-ansible-galaxy collection install my_namespace.opa_governance
+ansible-galaxy collection install optm.policy_configuration
