@@ -1,0 +1,10 @@
+namespace: "optm"
+name: "policy_configuration"
+version: "1.0.0"
+authors:
+  - "Keith Nelson <keith.r.b.nelson@gmail.com>"
+description: "A toolkit for generating and validating OPA policies for Ansible"
+license:
+  - "GPL-3.0-or-later"
+tags: ["opa", "rego", "security", "governance", "compliance"]
+repository: "https://github.com/youruser/ansible-opa-collection"
